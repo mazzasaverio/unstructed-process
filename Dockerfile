@@ -8,10 +8,13 @@ WORKDIR /app
 COPY . /app
 
 # Install required packages
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Install Uvicorn for running the application
-RUN pip install uvicorn
+RUN pip install --no-cache-dir uvicorn
+
+# Make sure client.properties is included and accessible
+COPY client.properties /app/client.properties
 
 # Make port 8080 available to the world outside this container
 EXPOSE 8080
